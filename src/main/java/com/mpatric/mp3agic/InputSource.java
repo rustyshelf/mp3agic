@@ -18,11 +18,6 @@ public interface InputSource {
     boolean isReadable();
 
     /**
-     * Retrieves the last modification time of the resource.
-     */
-    long getLastModified() throws IOException;
-
-    /**
      * Retrieves the length of the resource in bytes.
      */
     long getLength() throws IOException;

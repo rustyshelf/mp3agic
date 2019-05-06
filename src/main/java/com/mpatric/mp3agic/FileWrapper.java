@@ -13,7 +13,6 @@ import java.util.concurrent.TimeUnit;
 public class FileWrapper {
 
 	protected InputSource inputSource;
-	protected long lastModified;
 
 	protected FileWrapper() {
 	}
@@ -43,17 +42,13 @@ public class FileWrapper {
 	}
 
 	private void init() throws IOException {
-		if (!inputSource.isReadable()) throw new FileNotFoundException("File could not be found or is not readable " +
-				inputSource.getResourceName());
-		lastModified = inputSource.getLastModified();
+		if (!inputSource.isReadable()) {
+			throw new FileNotFoundException("File could not be found or is not readable " + inputSource.getResourceName());
+		}
 	}
 
 	public String getFilename() {
 		return inputSource.getResourceName();
-	}
-
-	public long getLastModified() {
-		return lastModified;
 	}
 
 }
