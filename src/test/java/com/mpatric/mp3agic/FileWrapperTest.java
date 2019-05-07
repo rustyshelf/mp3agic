@@ -23,7 +23,6 @@ public class FileWrapperTest {
 		System.out.println(fileWrapper.getFilename());
 		System.out.println(VALID_FILENAME);
 		assertEquals(fileWrapper.getFilename(), VALID_FILENAME);
-		assertTrue(fileWrapper.getLastModified() > 0);
 		assertEquals(fileWrapper.inputSource.getLength(), VALID_FILE_LENGTH);
 	}
 
@@ -33,7 +32,6 @@ public class FileWrapperTest {
 		System.out.println(fileWrapper.getFilename());
 		System.out.println(VALID_FILENAME);
 		assertEquals(fileWrapper.getFilename(), VALID_FILENAME);
-		assertTrue(fileWrapper.getLastModified() > 0);
 		assertEquals(fileWrapper.inputSource.getLength(), VALID_FILE_LENGTH);
 	}
 
@@ -43,7 +41,6 @@ public class FileWrapperTest {
 		System.out.println(fileWrapper.getFilename());
 		System.out.println(VALID_FILENAME);
 		assertEquals(fileWrapper.getFilename(), VALID_FILENAME);
-		assertTrue(fileWrapper.getLastModified() > 0);
 		assertEquals(fileWrapper.inputSource.getLength(), VALID_FILE_LENGTH);
 	}
 
