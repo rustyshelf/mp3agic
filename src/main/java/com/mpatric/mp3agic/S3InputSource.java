@@ -11,7 +11,7 @@ public class S3InputSource implements InputSource {
 	private S3Path path;
 	private S3ReadOnlySeekableByteChannel channel;
 
-	S3InputSource(S3Path path) throws IOException{
+	public S3InputSource(S3Path path) throws IOException{
 		this.path = path;
 		this.channel = new S3ReadOnlySeekableByteChannel(path);
 	}
