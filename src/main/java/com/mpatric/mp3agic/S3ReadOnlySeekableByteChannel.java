@@ -5,6 +5,7 @@ import com.amazonaws.services.s3.model.AmazonS3Exception;
 import com.amazonaws.services.s3.model.GetObjectRequest;
 import com.amazonaws.services.s3.model.S3Object;
 import com.google.common.base.Throwables;
+import com.upplication.s3fs.S3FileSystem;
 import com.upplication.s3fs.S3Path;
 
 import java.io.BufferedInputStream;
@@ -16,6 +17,7 @@ import java.nio.channels.Channels;
 import java.nio.channels.NonWritableChannelException;
 import java.nio.channels.ReadableByteChannel;
 import java.nio.channels.SeekableByteChannel;
+import java.nio.file.FileSystem;
 
 
 public class S3ReadOnlySeekableByteChannel implements SeekableByteChannel {
@@ -38,14 +40,20 @@ public class S3ReadOnlySeekableByteChannel implements SeekableByteChannel {
 		this.path = path;
 
 		String key = path.getKey();
+		System.out.println("Key: " + key);
 		try {
-			path.getFileSystem().getClient().getObjectMetadata(path.getFileStore().getBucket().getName(), key);
+			S3FileSystem fileSystem = path.getFileSystem();
+			System.out.println("fileSystem: " + fileSystem);
+			String bucketName = path.getFileStore().getBucket().getName();
+			System.out.println("bucketName: " + bucketName);
+			
+			this.length = fileSystem.getClient().getObjectMetadata(bucketName, key).getContentLength();
 		}
 		catch (AmazonS3Exception e) {
 			throw new FileNotFoundException("Unable to locate file");
 		}
 
-		this.length = path.getFileSystem().getClient().getObjectMetadata(path.getFileStore().getBucket().getName(), key).getContentLength();
+
 	}
 
 
