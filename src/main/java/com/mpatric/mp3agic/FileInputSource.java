@@ -26,11 +26,6 @@ public class FileInputSource implements InputSource {
     }
 
     @Override
-    public long getLastModified() throws IOException {
-        return Files.getLastModifiedTime(path).to(TimeUnit.MILLISECONDS);
-    }
-
-    @Override
     public long getLength() throws IOException {
         return Files.size(path);
     }
